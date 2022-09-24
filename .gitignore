@@ -2,3 +2,5 @@
 ./CMakeCache.txt
 ./build/
 ./MILF
+./Makefile
+*.milf

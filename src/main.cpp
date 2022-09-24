@@ -2,16 +2,18 @@
 #include <fstream>
 #include <string>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
         std::string line;
-        std::ifstream milfCode("Code.milf"); //open file
-        //read line by libe 
+        std::ifstream milfCode(argv[argc-1]); //open file
+
+        if (!milfCode) {
+                std::cerr << "File not found" << std::endl;
+        }
+
+        //read line by line 
         while (getline (milfCode, line)) {
                 std::cout << line << std::endl;
         }
-        milfCode.close(); //close file
 
-        std::cout << "This is going to be a compiler at some point" << std::endl;
         return 0;
 }
