@@ -4,4 +4,9 @@ cmake_minimum_required(VERSION 3.10)
 project(MILF)
 
 # add the executable
-add_executable(MILF src/main.cpp)
+add_executable(
+		MILF 
+		src/functions.h
+		src/functions.cpp
+		src/main.cpp
+)

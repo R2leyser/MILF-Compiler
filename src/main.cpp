@@ -1,34 +1,20 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "functions.h"
 
-void F_PRINT(std::string string){
-
-        std::string::size_type i = string.find("print");
-        if (i != std::string::npos)
-                string.erase(i, 5);
-
-        std::cout << string << std::endl; 
-}
-
-/*! \enum tokens
+/*! \enum token
  *
  *  list of valid supported tokens
  */
-enum tokens { 
+enum token { 
         PRINT = 1,
         HI = 2,
 };
 
-tokens getToken (std::string const& inString) {
+token getToken (std::string const& inString) {
     if (inString == "print") return PRINT;
     if (inString == "hi") return HI;
-}
-
-int count{};
-
-auto iota(){
-        count++;
 }
 
 int main(int argc, char *argv[]) {
@@ -47,25 +33,22 @@ int main(int argc, char *argv[]) {
                 fprintf(stderr, "File path %s is not valid\n", filePath);
                 return -1;
         }
-
-        tokens TOKEN;
+		
         //read line by line 
         while (getline (milfCode, line, ';')) {
+                token TOKEN{};
                 TOKEN = getToken(line);
-        //TODO: Figure out why this doesn't detect the HI token
 
-                printf("Line: %s\n", line);
-                if (PRINT){
+                std::cout << "Line: " << line << std::endl;
+                
+                if (TOKEN == PRINT){
                         F_PRINT(line);
-                        break;
                 }
-                else if (HI){
+                else if (TOKEN == HI){
                         printf("Hello!\n");
                 }
-                iota();
         };
-        iota();
-        printf("%s\n", line);
         return 0;
 }
-//vim:filetype=cpp
+
+// vim:filetype=cpp 
